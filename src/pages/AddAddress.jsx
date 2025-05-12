@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/assets'
-const InputField = ({ type, placeholder, name, handlechange, address }) => (
+
+const InputField = ({ type, placeholder, name, handleChange, address }) => (
     <input
-        className='w-full px-2 py-2.5 border border-gray-500/30 rounded outline-none text-gray-500 focus:border-green-500 transition'
+        className='w-full px-4 py-3 border-2 border-gray-200 rounded-lg outline-none text-gray-600 focus:border-green-500 transition-all duration-300 hover:border-gray-300'
         type={type}
         placeholder={placeholder}
-        onChange={handlechange}
+        onChange={handleChange}
         name={name}
         value={address[name]}
         required
@@ -15,7 +16,7 @@ const InputField = ({ type, placeholder, name, handlechange, address }) => (
 const AddAddress = () => {
     const [address, setAddress] = useState({
         firstName: '',
-        lastname: '',
+        lastName: '',
         email: '',
         street: '',
         state: '',
@@ -24,47 +25,75 @@ const AddAddress = () => {
         country: '',
         phone: ''
     })
-    const handlechange = (e) => {
+
+    const handleChange = (e) => {
         const { name, value } = e.target
-        setAddress((prevAddress) = ({
-            ...prevAddress,
-            [name]: value
-        }))
+        setAddress(prev => ({ ...prev, [name]: value }))
     }
-    const onSubmitHandler = async (e) => {
+
+    const onSubmitHandler = (e) => {
         e.preventDefault()
+        // Handle form submission
     }
+
     return (
-        <>
-            <div className='mt-16 pb-16'>
-                <p className='text-2xl md:text-3xl text-gray-500'>Add Shipping <span className='font-semibold text-green-500'>Address</span></p>
-                <div className='flex flex-col-reverse md:flex-row justify-between mt-10'>
-                    <div className='flex-1 max-w-md'>
-                        <form onCanPlay={onSubmitHandler} className='space-y-3 mt-6 text-sm'>
-                            <div className='grid grid-cols-2 gap-4'>
-                                <InputField handlechange={handlechange} address={address} name='firstName' type='text' placeholder='First Name' />
-                                <InputField handlechange={handlechange} address={address} name='lasttName' type='text' placeholder='Last Name' />
-                            </div>
-                            <InputField handlechange={handlechange} address={address} name='email' type='email' placeholder='Email Address' />
-                            <InputField handlechange={handlechange} address={address} name='street' type='text' placeholder='Street' />
-                            <div className='grid grid-cols-2 gap-4'>
-                                <InputField handlechange={handlechange} address={address} name='city' type='text' placeholder='City' />
-                                <InputField handlechange={handlechange} address={address} name='state' type='text' placeholder='State' />
-                            </div>
-                            <div className='grid grid-cols-2 gap-4'>
-                                <InputField handlechange={handlechange} address={address} name='zipcode' type='Number' placeholder='Zipcode' />
-                                <InputField handlechange={handlechange} address={address} name='country' type='text' placeholder='Country' />
-                            </div>
-                            <InputField handlechange={handlechange} address={address} name='phone' type='text' placeholder='Phone Number' />
-                            <button className='w-full mt-6 bg-green-500 text-white py-3 hover:bg-green-600 transition cursor-pointer uppercase'>
-                                Save Address
-                            </button>
-                        </form>
-                    </div>
-                    <img src={assets.add_address_image} className='md:mr-16 md:mt-0 mb-16' alt="" />
+        <div className='mt-12 pb-16 px-4 md:px-8'>
+            <h1 className='text-3xl md:text-4xl text-gray-800 font-bold mb-8'>
+                Add <span className='text-green-600'>Shipping Address</span>
+            </h1>
+            
+            <div className='flex flex-col md:flex-row gap-8 items-center'>
+                {/* Image Section - Swapped to left */}
+                <div className='md:w-1/2 lg:w-2/5'>
+                    <img 
+                        src={assets.add_address_image} 
+                        className='rounded-xl shadow-xl transform hover:scale-105 transition-transform duration-300'
+                        alt="Shipping illustration"
+                    />
+                </div>
+
+                {/* Form Section */}
+                <div className='md:w-1/2 lg:w-3/5 w-full max-w-2xl'>
+                    <form onSubmit={onSubmitHandler} className='space-y-5'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+                            <InputField handleChange={handleChange} address={address} 
+                                name='firstName' type='text' placeholder='First Name' />
+                            <InputField handleChange={handleChange} address={address} 
+                                name='lastName' type='text' placeholder='Last Name' />
+                        </div>
+
+                        <InputField handleChange={handleChange} address={address} 
+                            name='email' type='email' placeholder='Email Address' />
+
+                        <InputField handleChange={handleChange} address={address} 
+                            name='street' type='text' placeholder='Street Address' />
+
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+                            <InputField handleChange={handleChange} address={address} 
+                                name='city' type='text' placeholder='City' />
+                            <InputField handleChange={handleChange} address={address} 
+                                name='state' type='text' placeholder='State/Province' />
+                        </div>
+
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+                            <InputField handleChange={handleChange} address={address} 
+                                name='zipcode' type='number' placeholder='Zipcode' />
+                            <InputField handleChange={handleChange} address={address} 
+                                name='country' type='text' placeholder='Country' />
+                        </div>
+
+                        <InputField handleChange={handleChange} address={address} 
+                            name='phone' type='tel' placeholder='Phone Number' />
+
+                        <button className='w-full py-4 bg-green-600 text-white font-semibold rounded-lg
+                            hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl
+                            transform hover:-translate-y-1'>
+                            Save Shipping Address
+                        </button>
+                    </form>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
