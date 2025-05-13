@@ -104,19 +104,22 @@ const ProductDetails = () => {
                 </div>
                 {/* Related Products */}
                 <div className="flex flex-col items-center mt-16 px-4 sm:px-6">
-                    <div className="flex flex-col items-center w-full sm:w-max text-center">
-                        <p className="text-2xl sm:text-3xl font-medium">Related Products</p>
-                        <div className="w-16 sm:w-20 h-0.5 rounded-full mt-2 bg-green-600"></div>
+                    <div className="mb-12 text-center">
+                        <h2 className="text-3xl md:text-3xl font-semibold text-gray-800 relative inline-block">
+                            Related Products
+                        </h2>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 w-full mt-6">
-                        {relatedProducts
-                            .filter(product => product.inStock).slice(0, 4)
-                            .map((product, index) => (
-                                <div key={index} className="flex justify-center">
-                                    <ProductCard product={product} />
-                                </div>
-                            ))}
+                    <div className="w-full flex justify-center mt-10 mb-10">
+                        <div className="grid justify-items-center justify-center grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 sm:gap-5 md:gap-6 max-w-[1320px] mx-auto px-4 w-full">
+                            {relatedProducts
+                                .filter(product => product.inStock).slice(0, 3)
+                                .map((product, index) => (
+                                    <div key={index} className="flex justify-center">
+                                        <ProductCard product={product} />
+                                    </div>
+                                ))}
+                        </div>
                     </div>
 
                     <button className="mt-12 px-8 sm:px-12 py-2.5 text-sm sm:text-base border rounded text-green-500 hover:bg-green-500/10 transition"

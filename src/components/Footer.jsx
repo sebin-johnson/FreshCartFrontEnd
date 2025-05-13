@@ -72,13 +72,13 @@ const Footer = () => {
                             <li>
                                 <a href="#" className="flex items-center text-gray-700 hover:text-green-600 transition-colors gap-2">
                                     <span className="text-green-400">→</span>
-                                    Best Seller
+                                    Categories
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="flex items-center text-gray-700 hover:text-green-600 transition-colors gap-2">
                                     <span className="text-green-400">→</span>
-                                    Categories
+                                    Best Seller
                                 </a>
                             </li>
                         </ul>
@@ -120,7 +120,7 @@ const Footer = () => {
                             <li>
                                 <a href="tel:+8807684734978" className="flex items-center text-gray-700 hover:text-green-600 transition-colors gap-2">
                                     <span className="text-green-400">📞</span>
-                                    +880 768 473 4978
+                                    +91 9876 543 210
                                 </a>
                             </li>
                             <li>

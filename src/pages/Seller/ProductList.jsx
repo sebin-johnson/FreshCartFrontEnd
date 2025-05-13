@@ -24,7 +24,7 @@ const ProductList = () => {
               </thead>
 
               <tbody className="divide-y divide-gray-200">
-                {products.slice(0, 10).map((product) => (
+                {products.slice(0, 4).map((product) => (
                   <tr
                     key={product._id}
                     className="hover:bg-gray-50 transition-colors duration-150"

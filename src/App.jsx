@@ -3,7 +3,7 @@ import NavBar from './components/NavBar'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Footer from './components/Footer'
-import { ToastContainer, Bounce } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
 import { useAppContext } from './context/AppContext'
 import Login from './components/Login'
 import AllProducts from './pages/AllProducts'
@@ -43,19 +43,7 @@ const App = () => {
           </Routes>
         </div>
         {!isSellerPath && <Footer />}
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          transition={Bounce}
-        />
+        <Toaster position="top-center" reverseOrder={false} />
       </div>
     </>
   )

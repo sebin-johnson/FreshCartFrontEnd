@@ -27,12 +27,15 @@ const AllProducts = () => {
             </div>
 
             <div className="w-full flex justify-center mt-10 mb-10">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
-                    {
-                        filterdProducts.filter((product) => product.inStock).map((product, index) => (
-                            <ProductCard key={index} product={product} />
-                        ))
-                    }
+                <div className="grid justify-items-center justify-center grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 sm:gap-5 md:gap-6 max-w-[1320px] mx-auto px-4 w-full">
+                    {filterdProducts
+                        .slice(0, 4)
+                        .filter((product) => product.inStock)
+                        .map((product, index) => (
+                            <div className="w-full flex justify-center">
+                                <ProductCard key={index} product={product} />
+                            </div>
+                        ))}
                 </div>
             </div>
         </>

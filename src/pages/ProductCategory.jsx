@@ -23,12 +23,16 @@ const ProductCategory = () => {
                 }
                 {
                     filteredProducts.length > 0 ? (
-                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 w-full mt-5'>
-                            {
-                                filteredProducts.map((product) => (
-                                    <ProductCard key={product._id} product={product} />
-                                ))
-                            }
+                        <div className="w-full flex justify-center mt-5 mb-10">
+                            <div className='grid justify-items-center justify-center grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 sm:gap-5 md:gap-6 max-w-[1320px] mx-auto px-4 w-full'>
+                                {
+                                    filteredProducts.slice(0, 3).map((product) => (
+                                        <div className="w-full flex justify-center">
+                                            <ProductCard key={product._id} product={product} />
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </div>
                     ) : (
                         <div className='flex items-center justify-center h-[60vh]'>

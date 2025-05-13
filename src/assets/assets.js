@@ -184,22 +184,22 @@ export const features = [
   {
     icon: delivery_truck_icon,
     title: "Fastest Delivery",
-    description: "Groceries delivered in under 30 minutes.",
+    description: "Groceries at your door in under 30 minutes.",
   },
   {
     icon: leaf_icon,
     title: "Freshness Guaranteed",
-    description: "Fresh produce straight from the source.",
+    description: "Farm-fresh produce delivered directly to you",
   },
   {
     icon: coin_icon,
     title: "Affordable Prices",
-    description: "Quality groceries at unbeatable prices.",
+    description: "Top-quality groceries at prices you’ll love",
   },
   {
     icon: trust_icon,
     title: "Trusted by Thousands",
-    description: "Loved by 10,000+ happy customers.",
+    description: "Trusted by over 10,000 satisfied customers.",
   },
 ];
 
