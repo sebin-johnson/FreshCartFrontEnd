@@ -145,7 +145,7 @@ const Footer = () => {
                         </div>
 
                         <p className="text-sm text-gray-600 text-center sm:text-left">
-                            © {currentYear} Freshcart. All rights reserved.
+                            © {currentYear} FreshCart. All rights reserved.
                         </p>
                     </div>
                 </div>
