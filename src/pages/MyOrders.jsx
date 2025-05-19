@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { dummyOrders } from '../assets/assets';
-import { FiPackage, FiCalendar, FiDollarSign, FiCheckCircle, FiClock } from 'react-icons/fi';
+import { FiPackage, FiCalendar, FiCheckCircle, FiX } from 'react-icons/fi';
 
 const MyOrders = () => {
     const [myOrders, setMyOrders] = useState([]);
-    
+
     useEffect(() => {
-        setTimeout(() => setMyOrders(dummyOrders), 200);
+        setTimeout(() => setMyOrders(dummyOrders), 200)
     }, []);
 
     const statusStyles = {
@@ -14,6 +14,28 @@ const MyOrders = () => {
         Pending: 'bg-yellow-100 text-yellow-800',
         Cancelled: 'bg-red-100 text-red-800',
         Shipped: 'bg-blue-100 text-blue-800'
+    };
+
+    const handleCancelOrder = (orderId) => {
+        setMyOrders(prevOrders => 
+            prevOrders.map(order => 
+                order._id === orderId ? { ...order, status: 'Cancelled' } : order
+            )
+        );
+    };
+
+    const canCancelOrder = (status) => {
+        return status === 'Pending'; 
+    };
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return isNaN(date) ? 'N/A' : date.toLocaleDateString('en-IN', {
+            weekday: 'short',
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        });
     };
 
     return (
@@ -39,7 +61,7 @@ const MyOrders = () => {
                     </div>
                 ) : (
                     <div className="space-y-8">
-                        {myOrders.map((order, index) => (
+                        {myOrders.map((order) => (
                             <div 
                                 key={order._id}
                                 className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100"
@@ -52,23 +74,16 @@ const MyOrders = () => {
                                         </h3>
                                         <p className="text-sm text-gray-500 mt-1 flex items-center gap-2">
                                             <FiCalendar className="text-gray-400" />
-                                            {new Date(order.createdAt).toLocaleDateString('en-IN', {
-                                                day: 'numeric',
-                                                month: 'long',
-                                                year: 'numeric'
-                                            })}
+                                            {formatDate(order.createdAt)}
                                         </p>
                                     </div>
-                                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusStyles[order.status]}`}>
-                                        {order.status}
-                                    </span>
                                 </div>
 
                                 {/* Order Items */}
                                 <div className="divide-y divide-gray-200">
-                                    {order.items.map((item, itemIndex) => (
+                                    {order.items.map((item) => (
                                         <div 
-                                            key={itemIndex}
+                                            key={item.product._id}
                                             className="p-6 flex flex-col md:flex-row items-start md:items-center gap-6 hover:bg-gray-50 transition-colors duration-200"
                                         >
                                             {/* Product Image */}
@@ -103,19 +118,16 @@ const MyOrders = () => {
                                             {/* Order Timeline */}
                                             <div className="md:text-right">
                                                 <div className="text-sm space-y-1">
-                                                    <p className="text-gray-600">
-                                                        <span className="font-medium">Payment:</span>{' '}
+                                                    <p className="text-gray-600 flex items-center gap-1">
+                                                        <FiCheckCircle />
+                                                        <span className="font-medium">Payment:</span>
                                                         <span className={`${order.paymentType === 'Paid' ? 'text-green-600' : 'text-orange-600'}`}>
                                                             {order.paymentType}
                                                         </span>
                                                     </p>
                                                     <p className="text-gray-600">
                                                         <span className="font-medium">Expected Delivery:</span>{' '}
-                                                        {new Date(order.deliveryDate).toLocaleDateString('en-IN', {
-                                                            weekday: 'short',
-                                                            day: 'numeric',
-                                                            month: 'short'
-                                                        })}
+                                                        {formatDate(order.deliveryDate)}
                                                     </p>
                                                 </div>
                                             </div>
@@ -125,9 +137,23 @@ const MyOrders = () => {
 
                                 {/* Order Footer */}
                                 <div className="p-6 border-t border-gray-200 bg-gray-50 rounded-b-xl">
-                                    <div className="flex flex-col sm:flex-row justify-end items-center gap-4">
+                                    <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                                         <div className="text-lg font-semibold text-gray-900">
-                                            Total: ₹{order.amount}
+                                            Total: ₹{order.amount.toLocaleString('en-IN')}
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            {canCancelOrder(order.status) && (
+                                                <button
+                                                    onClick={() => handleCancelOrder(order._id)}
+                                                    className="flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors duration-200"
+                                                >
+                                                    <FiX className="w-4 h-4" />
+                                                    Cancel Order
+                                                </button>
+                                            )}
+                                            <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusStyles[order.status]}`}>
+                                                {order.status}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
