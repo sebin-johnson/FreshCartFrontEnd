@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
                     scrollTo(0, 0)
                 }}>
                 <div className="flex">
-                    <div className="w-44 h-48 bg-green-100 p-2 flex items-center justify-center">
+                    <div className="w-44 h-48 bg-green-100 flex items-center justify-center">
                         <img src={product.image[0]} alt="Product" className=" w-full h-auto rounded-md" />
                     </div>
 

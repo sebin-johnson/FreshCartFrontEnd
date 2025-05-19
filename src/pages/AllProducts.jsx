@@ -29,7 +29,6 @@ const AllProducts = () => {
             <div className="w-full flex justify-center mt-10 mb-10">
                 <div className="grid justify-items-center justify-center grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 sm:gap-5 md:gap-6 max-w-[1320px] mx-auto px-4 w-full">
                     {filterdProducts
-                        .slice(0, 4)
                         .filter((product) => product.inStock)
                         .map((product, index) => (
                             <div className="w-full flex justify-center">
