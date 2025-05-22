@@ -479,7 +479,7 @@ export const dummyOrders = [
     ],
     amount: 125,
     address: dummyAddress[0],
-    status: "Shipped",
+    status: "Pending",
     paymentType: "COD",
     isPaid: false,
     createdAt: "2025-03-25T07:17:13.068Z",

@@ -1,5 +1,7 @@
 import React from 'react';
 import { assets } from '../assets/assets';
+import { Link } from 'react-scroll'
+
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -64,22 +66,22 @@ const Footer = () => {
                         </h3>
                         <ul className="space-y-3">
                             <li>
-                                <a href="#" className="flex items-center text-gray-700 hover:text-green-600 transition-colors gap-2">
+                                <a href="#" className="flex items-center text-gray-700 hover:text-green-600 transition-colors gap-2 cursor-pointer">
                                     <span className="text-green-400">→</span>
                                     Home
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="flex items-center text-gray-700 hover:text-green-600 transition-colors gap-2">
+                                <Link to="category" smooth={true} duration={500} className="flex items-center text-gray-700 hover:text-green-600 transition-colors gap-2 cursor-pointer">
                                     <span className="text-green-400">→</span>
                                     Categories
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#" className="flex items-center text-gray-700 hover:text-green-600 transition-colors gap-2">
+                                <Link to="bestSeller" smooth={true} duration={500} className="flex items-center text-gray-700 hover:text-green-600 transition-colors gap-2 cursor-pointer">
                                     <span className="text-green-400">→</span>
                                     Best Seller
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
